@@ -1,22 +1,28 @@
 import { useState } from "react";
 import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const useLogin = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const router = useRouter();
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  
+  // @ts-expect-error
+  const handleLogin = (values: any, { setSubmitting }) => {
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((res) => {
+        setErrorMsg("");
+        router.push("/");
+      })
+      .catch((err) => {
+        setErrorMsg("Incorret credentials.");
+        console.error(err);
+      });
 
-  const handleEmail = (e: any) => setEmail(e.target.value);
-  const handlePassword = (e: any) => setPassword(e.target.value);
-
-  const handleLogin = () => {
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.error(err));
-    
+    setSubmitting(false);
   };
 
-  return { email, password, handleEmail, handlePassword, handleLogin };
+  return { handleLogin, errorMsg };
 };
 
 export default useLogin;
