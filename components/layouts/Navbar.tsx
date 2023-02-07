@@ -7,14 +7,13 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
 const Navbar = () => {
   const router = useRouter();
-  const { handleDrawerToggle, routes } = useContext(AppContext);
+  const { handleDrawerToggle } = useContext(AppContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -37,19 +36,6 @@ const Navbar = () => {
           >
             Budget
           </Typography>
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
-            {routes.map((route, i) => (
-              <Button
-                key={i}
-                sx={{ color: "#fff" }}
-                onClick={() =>
-                  router.push(route.href, undefined, { shallow: true })
-                }
-              >
-                {route.label}
-              </Button>
-            ))}
-          </Box>
           <IconButton
             size="large"
             aria-label="account of current user"

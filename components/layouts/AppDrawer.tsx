@@ -15,11 +15,6 @@ const AppDrawer = () => {
   const { isMobileOpen, handleDrawerToggle, routes } = useContext(AppContext);
 
   return (
-    <Drawer
-      open={isMobileOpen}
-      onClose={handleDrawerToggle}
-      sx={{ display: { xs: "flex", md: "none" } }}
-    >
       <Box sx={{ width: 250 }}>
         <List>
           {routes.map((route, i) => {
@@ -39,7 +34,6 @@ const AppDrawer = () => {
           })}
         </List>
       </Box>
-    </Drawer>
   );
 };
 
