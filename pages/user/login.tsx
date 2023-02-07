@@ -1,4 +1,5 @@
 import React from "react";
+import useLogin from "@/hooks/useLogin";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,6 +9,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const Login = () => {
+  const { email, password, handleEmail, handlePassword, handleLogin } = useLogin();
+
   return (
     <Box
       sx={{
@@ -28,9 +31,21 @@ const Login = () => {
               label="Email"
               variant="standard"
               sx={{ mb: 2 }}
-              helperText="Login with magic link"
+              helperText="Email Error"
+              type="email"
+              value={email}
+              onChange={handleEmail}
             />
-            <Button variant="contained" size="small">
+            <TextField
+              label="Password"
+              variant="standard"
+              sx={{ mb: 2 }}
+              helperText="Login with magic link"
+              type="password"
+              value={password}
+              onChange={handlePassword}
+            />
+            <Button variant="contained" size="small" onClick={handleLogin} disabled={!email && !password ? true : false}>
               Login
             </Button>
           </Box>
