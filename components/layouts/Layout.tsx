@@ -10,7 +10,12 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 
 const Layout: React.FC<{ children: any }> = ({ children }) => {
-  const { isMobileOpen, handleDrawerToggle } = useContext(AppContext);
+  const { isLoggedIn, isMobileOpen, handleDrawerToggle } = useContext(AppContext);
+
+  if(!isLoggedIn) {
+    return null;
+  }
+
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       <Drawer sx={{ display: { xs: "none", md: "flex" } }} variant="permanent" open>

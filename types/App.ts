@@ -1,4 +1,5 @@
-export interface Navigation {
+export interface App {
+    isLoggedIn: boolean;
     isMobileOpen: boolean;
     handleDrawerToggle: () => void;
     routes: Route[];

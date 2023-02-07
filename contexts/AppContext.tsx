@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { Navigation } from "@/types/App";
+import { App } from "@/types/App";
 
-const AppContext = createContext<Navigation>({} as Navigation);
+const AppContext = createContext<App>({} as App);
 
 export default AppContext;
