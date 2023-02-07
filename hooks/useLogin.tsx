@@ -9,10 +9,11 @@ const useLogin = () => {
   const handleEmail = (e: any) => setEmail(e.target.value);
   const handlePassword = (e: any) => setPassword(e.target.value);
 
-  const handleLogin = async () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+  const handleLogin = () => {
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.error(err));
+    
   };
 
   return { email, password, handleEmail, handlePassword, handleLogin };
