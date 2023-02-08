@@ -12,7 +12,7 @@ import ListItemText from "@mui/material/ListItemText";
 
 const AppDrawer = () => {
   const router = useRouter();
-  const { routes } = useContext(AppContext);
+  const { routes, handleDrawerToggle, isMobileOpen } = useContext(AppContext);
 
   return (
     <Box sx={{ width: 250 }}>
@@ -22,9 +22,12 @@ const AppDrawer = () => {
             <ListItem key={i} disablePadding>
               <ListItemButton
                 selected={router.pathname === route.href}
-                onClick={() =>
-                  router.push(route.href, undefined, { shallow: true })
-                }
+                onClick={() => {
+                  router.push(route.href, undefined, { shallow: true });
+                  if (isMobileOpen) {
+                  }
+                  handleDrawerToggle();
+                }}
               >
                 <ListItemText
                   primary={route.label}
