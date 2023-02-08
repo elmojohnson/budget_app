@@ -1,4 +1,5 @@
 import React from "react";
+import { Account } from "@/types/Account";
 
 // Formik
 import { Formik } from "formik";
@@ -9,17 +10,20 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-const AccountForm = () => {
+const AccountForm: React.FC<Account> = (account) => {
   return (
     <Box>
       <Formik
         initialValues={{
-          name: "",
-          initial_balance: "",
-          notes: "",
+          name: account.name,
+          initial_balance: account.initial_balance,
+          notes: account.notes,
         }}
         validationSchema={AccountSchema}
-        onSubmit={(values, { setSubmitting }) => console.log(values)}
+        onSubmit={(values, { setSubmitting }) => {
+          account.handleFormSubmit?.(values);
+          setSubmitting(false);
+        }}
       >
         {({
           values,
@@ -80,7 +84,7 @@ const AccountForm = () => {
               onClick={submitForm}
               disabled={isSubmitting}
             >
-              Create
+              {account.button_message || "Save"}
             </Button>
           </Box>
         )}
