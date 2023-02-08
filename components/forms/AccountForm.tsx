@@ -21,8 +21,7 @@ const AccountForm: React.FC<Account> = (account) => {
         }}
         validationSchema={AccountSchema}
         onSubmit={(values, { setSubmitting }) => {
-          account.handleFormSubmit?.(values);
-          setSubmitting(false);
+          account.handleFormSubmit?.(values, { setSubmitting });
         }}
       >
         {({
