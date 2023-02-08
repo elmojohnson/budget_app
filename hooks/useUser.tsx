@@ -1,11 +1,12 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { auth } from "../lib/firebase";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 
 const useUser = () => {
   const router = useRouter();
+  const [email, setEmail] = useState<string>("");
 
   const handleLogout = () => {
     signOut(auth)
@@ -16,7 +17,13 @@ const useUser = () => {
       .catch((err) => console.error(err));
   };
 
-  return { handleLogout };
+  useEffect(() => {
+    onAuthStateChanged(auth, (user: any) => {
+      setEmail(user?.email);
+    });
+  }, []);
+
+  return { email, handleLogout };
 };
 
 export default useUser;
