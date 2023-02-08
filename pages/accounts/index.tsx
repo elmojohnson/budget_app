@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import useAccounts from "@/hooks/useAccounts";
 
 import Layout from "@/components/layouts/Layout";
 
@@ -9,6 +10,8 @@ import Button from "@mui/material/Button";
 
 const Accounts = () => {
   const router = useRouter();
+  const { accounts, isLoading } = useAccounts();
+
   return (
     <Layout>
       <Box
@@ -28,6 +31,13 @@ const Accounts = () => {
           Create
         </Button>
       </Box>
+      {
+        isLoading ? <p>Loading...</p> : <div>{
+          accounts.map(account => {
+            return <p key={account.id}>{account.name}</p>
+          })
+          }</div>
+      }
     </Layout>
   );
 };
