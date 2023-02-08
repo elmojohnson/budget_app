@@ -7,6 +7,9 @@ import Layout from "@/components/layouts/Layout";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import AccountItem from "@/components/items/AccountItem";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Accounts = () => {
   const router = useRouter();
@@ -19,6 +22,8 @@ const Accounts = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
         }}
       >
         <Typography variant="h5">Accounts</Typography>
@@ -31,13 +36,17 @@ const Accounts = () => {
           Create
         </Button>
       </Box>
-      {
-        isLoading ? <p>Loading...</p> : <div>{
-          accounts.map(account => {
-            return <p key={account.id}>{account.name}</p>
-          })
-          }</div>
-      }
+      {isLoading ? (
+        <Box sx={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Stack spacing={2}>
+          {accounts.map((account) => {
+            return <AccountItem key={account.id} {...account} />;
+          })}
+        </Stack>
+      )}
     </Layout>
   );
 };
