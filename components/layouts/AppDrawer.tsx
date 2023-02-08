@@ -26,7 +26,7 @@ const AppDrawer = () => {
                 router.push(route.href, undefined, { shallow: true })
               }
             >
-              <ListItemButton href={route.href}>
+              <ListItemButton>
                 <ListItemText primary={route.label} />
               </ListItemButton>
             </ListItem>
