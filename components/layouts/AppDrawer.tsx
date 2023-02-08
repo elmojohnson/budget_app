@@ -19,15 +19,17 @@ const AppDrawer = () => {
       <List>
         {routes.map((route, i) => {
           return (
-            <ListItem
-              key={i}
-              disablePadding
-              onClick={() =>
-                router.push(route.href, undefined, { shallow: true })
-              }
-            >
-              <ListItemButton>
-                <ListItemText primary={route.label} />
+            <ListItem key={i} disablePadding>
+              <ListItemButton
+                selected={router.pathname === route.href}
+                onClick={() =>
+                  router.push(route.href, undefined, { shallow: true })
+                }
+              >
+                <ListItemText
+                  primary={route.label}
+                  sx={{ fontWeight: "bold" }}
+                />
               </ListItemButton>
             </ListItem>
           );
