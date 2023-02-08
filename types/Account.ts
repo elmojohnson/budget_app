@@ -4,5 +4,6 @@ export interface Account {
   initial_balance: number;
   notes?: string;
   button_message?: string;
-  handleFormSubmit?: (values?: any) => void;
+  // @ts-expect-error
+  handleFormSubmit?: (values?: any, { setSubmitting: any }) => void;
 }
